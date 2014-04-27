@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+     >
+
+    <LinearLayout
+        android:id="@+id/inOutBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/door"
+            android:layout_width="160sp"
+            android:layout_height="60sp"
+            android:text="@string/login"
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="160sp"
+            android:layout_height="60sp"
+            android:text="@string/logout"
+            android:textColor="#fff" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        />
+
+</RelativeLayout>
