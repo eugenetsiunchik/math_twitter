@@ -59,6 +59,7 @@ public class HttpManagering {
 		registry.register(new Scheme("https", sslSocketFactory, 443));
 		ThreadSafeClientConnManager manager = new ThreadSafeClientConnManager(
 				params, registry);
+		
 		client = new DefaultHttpClient(manager, params);
 	}
 	

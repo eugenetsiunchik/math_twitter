@@ -10,9 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import by.eugenetsiunchik.twitteritto.models.FormulaModel;
 import by.eugenetsiunchik.twitteritto.tasks.HtmlHelper;
+import by.eugenetsiunchik.twitteritto.tasks.HtmlImageUrlParser;
 
-public class PostLaTexActivity extends Activity {
+public class FormulaActivity extends Activity {
 
 	private EditText editText;
 	private String text;
@@ -20,26 +23,36 @@ public class PostLaTexActivity extends Activity {
 	private URL url;
 	private HtmlHelper hh;
 	private List<String> listImgLinks;
+	private ImageView imageView;
+	private FormulaModel formulaModel;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.post_activity);
-		editText = (EditText) this.findViewById(R.id.postTweet);
+		editText = (EditText) this.findViewById(R.id.editFormula);
+		imageView = (ImageView) this.findViewById(R.id.imageFormula);
+		formulaModel = new FormulaModel();
 
 	}
 
-	public void Post(View v) {
-		// TODO Auto-generated method stub
+	public void checkFormulaMethod(View v) {
 
 		Log.i(TAG, "Take");
-		Intent intent = new Intent();
 		if (editText.getTextSize() != 0) {
 			text = editText.getText().toString();
-			new HtmlParser(intent).execute(text);
-
+			new Thread(new HtmlImageUrlParser(text, imageView, formulaModel)).start();
 		}
+		
+	}
+	
+	public void sendFormulaMethod(View v){
+		Intent intent = new Intent();
+		Log.d(TAG, formulaModel.getUrl());
+		intent.putExtra("imageUrl", formulaModel.getUrl());
+		setResult(RESULT_OK, intent);
+		editText.setText(null);
+		finish();
 	}
 
 	class HtmlParser extends AsyncTask<String, Void, Void> {
@@ -58,7 +71,7 @@ public class PostLaTexActivity extends Activity {
 				hh = new HtmlHelper(url);
 				
 			} catch (Exception e) {
-				// TODO: handle exception
+				Log.e(TAG, e.toString());
 			}
 						
 			return null;
@@ -66,15 +79,11 @@ public class PostLaTexActivity extends Activity {
 		
 		@Override
 		protected void onPostExecute(Void result) {
-			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 
 			listImgLinks = hh.getImgLinks();
 			text = "http://texify.com" + listImgLinks.get(0);
-			intent.putExtra("message", text);
-			setResult(RESULT_OK, intent);
-			editText.setText(null);
-			finish();
+			
 		}
 	}
 }

@@ -32,7 +32,7 @@ class ParseHtml extends AsyncTask<String, Void, Void> {
 		}
 
 		return null;
-	}
+	}	
 
 	@Override
 	protected void onPostExecute(Void result) {

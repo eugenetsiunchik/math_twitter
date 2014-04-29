@@ -1,7 +1,7 @@
 package by.eugenetsiunchik.twitteritto.adapters.pager;
 
 import by.eugenetsiunchik.twitteritto.fragments.FeedFragment;
-import by.eugenetsiunchik.twitteritto.fragments.PostFragment;
+import by.eugenetsiunchik.twitteritto.fragments.MessageFragment;
 import by.eugenetsiunchik.twitteritto.fragments.UserProfileFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,7 +11,6 @@ public class TPagerAdapter extends FragmentStatePagerAdapter {
 
 	public TPagerAdapter(FragmentManager fm) {
 		super(fm);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -24,7 +23,7 @@ public class TPagerAdapter extends FragmentStatePagerAdapter {
 		}
 		case 1:
 		{
-			return new PostFragment();
+			return new MessageFragment();
 		}
 		case 0:
 		{

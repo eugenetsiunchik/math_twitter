@@ -14,12 +14,9 @@ public class HtmlHelper {
 	  private static final String TAG = HtmlHelper.class.getSimpleName();
 	TagNode rootNode;
 
-	  //Конструктор
 	  public HtmlHelper(URL htmlPage) throws IOException
 	  {
-	    //Создаём объект HtmlCleaner
 	    HtmlCleaner cleaner = new HtmlCleaner();
-	    //Загружаем html код сайта
 	    rootNode = cleaner.clean(htmlPage);
 	  }
 
@@ -28,7 +25,6 @@ public class HtmlHelper {
 	    List<String> linkList = new ArrayList<String>();
 	    
 	    
-	    //Выбираем все ссылки
 	    TagNode linkElements[] = rootNode.getElementsByName("img", true);
 	    for (int i = 0; linkElements != null && i < linkElements.length; i++)
 	    {

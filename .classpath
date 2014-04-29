@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="F:/worspaceEuAnPa/Twitteritto/libs/htmlcleaner-2.7.jar"/>
 	<classpathentry kind="lib" path="F:/worspaceEuAnPa/Twitteritto/libs/signpost-commonshttp4-1.2.1.2.jar"/>
 	<classpathentry kind="lib" path="F:/worspaceEuAnPa/Twitteritto/libs/signpost-core-1.2.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Eugene Tsiunchik/Desktop/commons-httpclient-3.1.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
