@@ -27,7 +27,6 @@ public abstract class JSONModel {
 		try {
 			return jo.getJSONObject(key);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

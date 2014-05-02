@@ -63,13 +63,14 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/statusImageBar"
+        android:gravity="center"
                 >
         <ImageView
         android:id="@+id/imageStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@android:color/white"
-        android:layout_gravity="center_horizontal" />
+        android:gravity="center" />
     </LinearLayout>
 
 </LinearLayout>

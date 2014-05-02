@@ -1,8 +1,9 @@
 package by.eugenetsiunchik.twitteritto.fragments;
 
-import android.content.Context;
+import android.R.color;
 import android.content.Intent;
-import android.opengl.Visibility;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,19 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import by.eugenetsiunchik.twitteritto.FormulaActivity;
 import by.eugenetsiunchik.twitteritto.R;
-import by.eugenetsiunchik.twitteritto.http.HttpManagering;
 import by.eugenetsiunchik.twitteritto.oauth.Consumer;
-import by.eugenetsiunchik.twitteritto.tasks.PostTasks;
 import by.eugenetsiunchik.twitteritto.tasks.UploadStatusTask;
 import by.eugenetsiunchik.twitteritto.tasks.UploadStatusWithMediaTask;
-import by.eugenetsiunchik.twitteritto.utility.Downloader;
 
 public class MessageFragment extends Fragment implements OnClickListener {
 
@@ -59,13 +56,17 @@ public class MessageFragment extends Fragment implements OnClickListener {
 				if (!haveImage) {
 					new UploadStatusTask(getActivity(), Consumer.getInstance().getConsumer()).execute(editTextPost
 							.getText().toString());
+					Toast.makeText(getActivity(), "Send success", Toast.LENGTH_SHORT).show();
 
 				} else {
+					
 					new UploadStatusWithMediaTask(getActivity(), Consumer.getInstance().getConsumer()).execute(
 							editTextPost.getText().toString(), message);
+					Toast.makeText(getActivity(), "Send success", Toast.LENGTH_SHORT).show();
 
 				}
-
+				buttonLaTexExpression.getBackground().setColorFilter(color.darker_gray, PorterDuff.Mode.MULTIPLY);
+				
 				editTextPost.setText(null);
 			}
 
@@ -87,7 +88,7 @@ public class MessageFragment extends Fragment implements OnClickListener {
 				message = data.getStringExtra("imageUrl");
 				Log.d(TAG, message);
 				if (message != null) {
-					editTextPost.setText(editTextPost.getText().toString());
+					buttonLaTexExpression.getBackground().setColorFilter(color.holo_orange_light, PorterDuff.Mode.MULTIPLY);
 					haveImage = true;
 				}
 			} else {
