@@ -49,6 +49,7 @@ public class FeedFragment extends Fragment implements LoaderManager.LoaderCallba
 	private static final Integer countTweetConst = 40;
 	private static final String URL = Constants.HOME_TIMELINE_URL_STRING;
 
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_feed, container, false);
@@ -57,7 +58,7 @@ public class FeedFragment extends Fragment implements LoaderManager.LoaderCallba
 
 		final PullToRefresh feedList = (PullToRefresh) rootView.findViewById(R.id.listview);
 		progressBar = (ProgressBar) rootView.findViewById(R.id.feedProgressBar);
-
+		progressBar.setVisibility(View.VISIBLE);
 		// feedList.addFooterView(nextPart);
 
 		Log.i(TAG, "Task complete");

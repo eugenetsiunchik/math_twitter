@@ -63,59 +63,60 @@ public class StartActivity extends Activity implements OnClickListener {
 
 		loginButton.setOnClickListener(this);
 		logoutButton.setOnClickListener(this);
+
 		ImageLoader imageLoader = ImageLoader.getInstance();
 		configurateDisplayOptions();
 		imageLoader.init(configurateImageLoader());
-		
+
 	}
 
 	private DisplayImageOptions configurateDisplayOptions() {
-		DisplayImageOptions options = new DisplayImageOptions.Builder()
-        .showImageOnLoading(R.drawable.ic_stub) // resource or drawable
-        .showImageForEmptyUri(R.drawable.ic_empty) // resource or drawable
-        .showImageOnFail(R.drawable.ic_error) // resource or drawable
-        .resetViewBeforeLoading(false)  // default
-        .delayBeforeLoading(1000)
-        .cacheInMemory(true) // default
-        .cacheOnDisc(false) // default
-        .build();
+		DisplayImageOptions options = new DisplayImageOptions.Builder().showImageOnLoading(R.drawable.ic_stub) // resource
+																												// or
+																												// drawable
+				.showImageForEmptyUri(R.drawable.ic_empty) // resource or
+															// drawable
+				.showImageOnFail(R.drawable.ic_error) // resource or drawable
+				.resetViewBeforeLoading(false) // default
+				.delayBeforeLoading(1000).cacheInMemory(true) // default
+				.cacheOnDisc(false) // default
+				.build();
 		return options;
 	}
 
 	private ImageLoaderConfiguration configurateImageLoader() {
-		
+
 		File cacheDir = StorageUtils.getCacheDirectory(getApplicationContext());
 		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
-		        .memoryCacheExtraOptions(480, 800) // default = device screen dimensions
-		        .discCacheExtraOptions(480, 800, CompressFormat.JPEG, 75, null)
-		        .threadPoolSize(3) // default
-		        .threadPriority(Thread.NORM_PRIORITY - 1) // default
-		        .tasksProcessingOrder(QueueProcessingType.FIFO) // default
-		        .denyCacheImageMultipleSizesInMemory()
-		        .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
-		        .memoryCacheSize(2 * 1024 * 1024)
-		        .memoryCacheSizePercentage(13) // default
-		        .discCache(new UnlimitedDiscCache(cacheDir)) // default
-		        .discCacheSize(50 * 1024 * 1024)
-		        .discCacheFileCount(100)
-		        .discCacheFileNameGenerator(new HashCodeFileNameGenerator()) // default
-		        .imageDownloader(new BaseImageDownloader(getApplicationContext())) // default
-		        .imageDecoder(new BaseImageDecoder(false)) // default
-		        .defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
-		        .writeDebugLogs()
-		        .build();
+				.memoryCacheExtraOptions(480, 800)
+				// default = device screen dimensions
+				.discCacheExtraOptions(480, 800, CompressFormat.JPEG, 75, null)
+				.threadPoolSize(3)
+				// default
+				.threadPriority(Thread.NORM_PRIORITY - 1)
+				// default
+				.tasksProcessingOrder(QueueProcessingType.FIFO)
+				// default
+				.denyCacheImageMultipleSizesInMemory().memoryCache(new LruMemoryCache(2 * 1024 * 1024))
+				.memoryCacheSize(2 * 1024 * 1024).memoryCacheSizePercentage(13)
+				// default
+				.discCache(new UnlimitedDiscCache(cacheDir))
+				// default
+				.discCacheSize(50 * 1024 * 1024).discCacheFileCount(100)
+				.discCacheFileNameGenerator(new HashCodeFileNameGenerator()) // default
+				.imageDownloader(new BaseImageDownloader(getApplicationContext())) // default
+				.imageDecoder(new BaseImageDecoder(false)) // default
+				.defaultDisplayImageOptions(DisplayImageOptions.createSimple()) // default
+				.writeDebugLogs().build();
 		return config;
 	}
 
 	private boolean isAuthorisation() {
 		mSettings = getSharedPreferences(Constants.PREFS, Context.MODE_PRIVATE);
-		if (ConnectionDetector.getInstance().isConnectingToInternet(
-				getApplicationContext())) {
+		if (ConnectionDetector.getInstance().isConnectingToInternet(getApplicationContext())) {
 
 			if (mSettings != null) {
-				if (mSettings.contains(OAUTH.USER_TOKEN)
-
-				&& mSettings.contains(OAUTH.USER_SECRET)) {
+				if (mSettings.contains(OAUTH.USER_TOKEN) && mSettings.contains(OAUTH.USER_SECRET)) {
 					mToken = mSettings.getString(OAUTH.USER_TOKEN, null);
 					mSecret = mSettings.getString(OAUTH.USER_SECRET, null);
 					if (!(mToken == null || mSecret == null)) {
@@ -123,14 +124,11 @@ public class StartActivity extends Activity implements OnClickListener {
 
 						progressBar.setVisibility(View.GONE);
 						inOutBar.setVisibility(View.GONE);
-						new CredentialsTask(this, HttpManagering.getInstance()
-								.getClient(), Consumer.getInstance()
+						new CredentialsTask(this, HttpManagering.getInstance().getClient(), Consumer.getInstance()
 								.getConsumer(mSettings), progressBar).execute();
 						return true;
 					} else {
-						Toast.makeText(getApplicationContext(),
-								"Authentification error", Toast.LENGTH_SHORT)
-								.show();
+						Toast.makeText(getApplicationContext(), "Authentification error", Toast.LENGTH_SHORT).show();
 						progressBar.setVisibility(View.GONE);
 						inOutBar.setVisibility(View.VISIBLE);
 						Log.i(TAG, "token or secret null");
@@ -138,9 +136,7 @@ public class StartActivity extends Activity implements OnClickListener {
 
 					}
 				} else {
-					Toast.makeText(getApplicationContext(),
-							"Authentification error", Toast.LENGTH_SHORT)
-							.show();
+					Toast.makeText(getApplicationContext(), "Authentification error", Toast.LENGTH_SHORT).show();
 					progressBar.setVisibility(View.GONE);
 					inOutBar.setVisibility(View.VISIBLE);
 					Log.i(TAG, "token or secret null");
@@ -148,21 +144,18 @@ public class StartActivity extends Activity implements OnClickListener {
 
 				}
 			} else {
-				Toast.makeText(getApplicationContext(),
-						"Authentification error", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Authentification error", Toast.LENGTH_SHORT).show();
 				Log.i(TAG, "token or secret null");
 				return false;
 
 			}
 		} else {
-			Toast.makeText(getApplicationContext(), "CONNECTION ERROR",
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "CONNECTION ERROR", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if (resultCode == RESULT_OK) {
@@ -178,13 +171,11 @@ public class StartActivity extends Activity implements OnClickListener {
 
 	public void onClick(View v) {
 		if (loginButton.equals(v)) {
-			if (ConnectionDetector.getInstance().isConnectingToInternet(
-					getApplicationContext())) {
+			if (ConnectionDetector.getInstance().isConnectingToInternet(getApplicationContext())) {
 				startActivityForResult(new Intent(this, OAUTH.class), OAUH);
-			}else
-				Toast.makeText(getApplicationContext(),
-						"CONNECTION INTERNET ERROR", Toast.LENGTH_SHORT).show();
-		} 
+			} else
+				Toast.makeText(getApplicationContext(), "CONNECTION INTERNET ERROR", Toast.LENGTH_SHORT).show();
+		}
 
 		if (logoutButton.equals(v)) {
 
@@ -193,8 +184,7 @@ public class StartActivity extends Activity implements OnClickListener {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-					getApplicationContext().getContentResolver().delete(
-							Contract.TweetsColumns.HOME_URI, null, null);
+					getApplicationContext().getContentResolver().delete(Contract.TweetsColumns.HOME_URI, null, null);
 
 				}
 			}).start();

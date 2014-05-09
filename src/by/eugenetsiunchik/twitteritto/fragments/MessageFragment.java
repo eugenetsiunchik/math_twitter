@@ -1,8 +1,9 @@
 package by.eugenetsiunchik.twitteritto.fragments;
 
 import android.R.color;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -45,6 +48,8 @@ public class MessageFragment extends Fragment implements OnClickListener {
 		buttonPost.setOnClickListener(this);
 		buttonLaTexExpression.setOnClickListener(this);
 
+		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
 		return rootView;
 
 	}
@@ -59,14 +64,14 @@ public class MessageFragment extends Fragment implements OnClickListener {
 					Toast.makeText(getActivity(), "Send success", Toast.LENGTH_SHORT).show();
 
 				} else {
-					
+
 					new UploadStatusWithMediaTask(getActivity(), Consumer.getInstance().getConsumer()).execute(
 							editTextPost.getText().toString(), message);
 					Toast.makeText(getActivity(), "Send success", Toast.LENGTH_SHORT).show();
 
 				}
 				buttonLaTexExpression.getBackground().setColorFilter(color.darker_gray, PorterDuff.Mode.MULTIPLY);
-				
+
 				editTextPost.setText(null);
 			}
 
@@ -88,7 +93,8 @@ public class MessageFragment extends Fragment implements OnClickListener {
 				message = data.getStringExtra("imageUrl");
 				Log.d(TAG, message);
 				if (message != null) {
-					buttonLaTexExpression.getBackground().setColorFilter(color.holo_orange_light, PorterDuff.Mode.MULTIPLY);
+					buttonLaTexExpression.getBackground().setColorFilter(color.holo_orange_light,
+							PorterDuff.Mode.MULTIPLY);
 					haveImage = true;
 				}
 			} else {

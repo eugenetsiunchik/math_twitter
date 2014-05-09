@@ -3,9 +3,7 @@ package by.eugenetsiunchik.twitteritto.tasks;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthProvider;
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import by.eugenetsiunchik.twitteritto.oauth.Keys;
@@ -46,8 +44,8 @@ public class OAutRequestTokenTask extends AsyncTask<Void, Void, String> {
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
 		OAUTH.saveRequestInformation(prefs, consumer.getToken(), consumer.getTokenSecret());
-		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-		activity.startActivityForResult(intent, 100);
+		//Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+		((OAUTH) activity).loadUrl(url);
 	}
 
 }

@@ -1,44 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/postLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:id="@+id/postLayout" >
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/editPost"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.1"
+        android:hint="@string/edit_post" />
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" 
-        android:layout_weight="0.1">
-
-        <EditText
-           android:id="@+id/editPost"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:hint="@string/edit_post"
-            android:gravity="top|left" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" 
+        android:layout_height="fill_parent"
         android:layout_weight="0.9"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal" >
 
         <Button
             android:id="@+id/buttonLaTexExpression"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="0.5"
-            style="?android:attr/buttonBarButtonStyle"
             android:text="@string/latex" />
 
         <Button
             android:id="@+id/buttonPost"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="0.5"
-            style="?android:attr/buttonBarButtonStyle"
             android:text="@string/tweet" />
     </LinearLayout>
 

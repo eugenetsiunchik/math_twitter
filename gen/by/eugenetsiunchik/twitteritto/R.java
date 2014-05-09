@@ -55,22 +55,23 @@ public final class R {
     }
     public static final class id {
         public static final int authorIcon=0x7f080011;
-        public static final int autorization=0x7f080023;
+        public static final int autorization=0x7f080025;
         public static final int buttonLaTexExpression=0x7f080005;
         public static final int buttonPost=0x7f080006;
-        public static final int checkFormulaButton=0x7f080019;
-        public static final int door=0x7f080020;
-        public static final int editFormula=0x7f080017;
+        public static final int checkFormulaButton=0x7f08001b;
+        public static final int door=0x7f080022;
+        public static final int editFormula=0x7f080019;
         public static final int editPost=0x7f080004;
-        public static final int exit=0x7f080025;
+        public static final int exit=0x7f080027;
         public static final int feedProgressBar=0x7f080002;
         public static final int filling=0x7f080014;
-        public static final int help=0x7f080024;
-        public static final int imageFormula=0x7f08001a;
+        public static final int help=0x7f080026;
+        public static final int imageFormula=0x7f08001c;
         public static final int imageStatus=0x7f080016;
-        public static final int inOutBar=0x7f08001f;
+        public static final int inOutBar=0x7f080021;
         public static final int listview=0x7f080001;
-        public static final int logoutButton=0x7f080021;
+        public static final int logoutButton=0x7f080023;
+        public static final int oauthProgressBar=0x7f080018;
         public static final int pager=0x7f080000;
         public static final int postLayout=0x7f080003;
         public static final int profileDescription=0x7f08000b;
@@ -80,16 +81,17 @@ public final class R {
         public static final int profileName=0x7f08000a;
         public static final int profileStatusesCount=0x7f08000c;
         public static final int profileUpPart=0x7f080007;
-        public static final int progressBar=0x7f080022;
-        public static final int pull_to_refresh_image=0x7f08001c;
-        public static final int pull_to_refresh_progress=0x7f08001b;
-        public static final int pull_to_refresh_text=0x7f08001d;
-        public static final int pull_to_refresh_updated_at=0x7f08001e;
-        public static final int sendFormulaButton=0x7f080018;
+        public static final int progressBar=0x7f080024;
+        public static final int pull_to_refresh_image=0x7f08001e;
+        public static final int pull_to_refresh_progress=0x7f08001d;
+        public static final int pull_to_refresh_text=0x7f08001f;
+        public static final int pull_to_refresh_updated_at=0x7f080020;
+        public static final int sendFormulaButton=0x7f08001a;
         public static final int statusImageBar=0x7f080015;
         public static final int userFeedProgressBar=0x7f08000f;
         public static final int userFullName=0x7f080009;
         public static final int userTimeline=0x7f080010;
+        public static final int webview=0x7f080017;
         public static final int when=0x7f080013;
         public static final int who=0x7f080012;
     }
@@ -99,9 +101,10 @@ public final class R {
         public static final int fragment_post=0x7f030002;
         public static final int fragment_user_profile=0x7f030003;
         public static final int item_adapter=0x7f030004;
-        public static final int post_activity=0x7f030005;
-        public static final int pull_to_refresh_header=0x7f030006;
-        public static final int start_activity=0x7f030007;
+        public static final int oauth_activity=0x7f030005;
+        public static final int post_activity=0x7f030006;
+        public static final int pull_to_refresh_header=0x7f030007;
+        public static final int start_activity=0x7f030008;
     }
     public static final class menu {
         public static final int main=0x7f070000;
